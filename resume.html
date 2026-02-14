@@ -14,15 +14,39 @@
     padding: 0;
     box-sizing: border-box;
   }
-  body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    color: #1a1a1a;
-    line-height: 1.35;
-    padding: 12mm 13mm 8mm 13mm;
-    width: 210mm;
-    height: 297mm;
-    font-size: 10pt;
-    overflow: hidden;
+
+  /* ---------- SCREEN (browser view) ---------- */
+  @media screen {
+    html {
+      background: #e8e8e8;
+    }
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      color: #1a1a1a;
+      line-height: 1.35;
+      font-size: 10pt;
+      width: 210mm;
+      min-height: 297mm;
+      margin: 40px auto;
+      padding: 12mm 13mm 8mm 13mm;
+      background: #fff;
+      border-radius: 4px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.15);
+    }
+  }
+
+  /* ---------- PRINT / PDF ---------- */
+  @media print {
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      color: #1a1a1a;
+      line-height: 1.35;
+      padding: 12mm 13mm 8mm 13mm;
+      width: 210mm;
+      height: 297mm;
+      font-size: 10pt;
+      overflow: hidden;
+    }
   }
   h1 {
     font-size: 20pt;
@@ -148,9 +172,73 @@
     color: #666;
     font-size: 9pt;
   }
+
+  /* ---------- DOWNLOAD BUTTON (screen only) ---------- */
+  .download-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #111;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,.3);
+  }
+  .download-bar a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    color: #111;
+    padding: 8px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background .2s, transform .1s;
+  }
+  .download-bar a:hover {
+    background: #e0e0e0;
+    transform: translateY(-1px);
+  }
+  .download-bar a svg {
+    width: 16px;
+    height: 16px;
+  }
+  .download-bar .back-link {
+    background: transparent;
+    color: #ccc;
+    border: 1px solid #555;
+  }
+  .download-bar .back-link:hover {
+    background: #222;
+    color: #fff;
+  }
+  @media print {
+    .download-bar { display: none !important; }
+  }
+  @media screen {
+    body { margin-top: 60px; }
+  }
 </style>
 </head>
 <body>
+
+<div class="download-bar">
+  <a class="back-link" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+    Back to Portfolio
+  </a>
+  <a href="Sidrameshwar_Biradar_Resume.pdf" download="Sidrameshwar_Biradar_Resume.pdf">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Download PDF
+  </a>
+</div>
 
 <h1>Sidrameshwar Biradar</h1>
 <div class="contact-info">
